@@ -17,8 +17,7 @@ sources:
               tests:
                 - unique
                 - not_null
-
-
+             
         - name: product
           identifier: raw_gz_product #quel est le nom exacte de la table dans Big Query
           description: purchase_price by products_id
