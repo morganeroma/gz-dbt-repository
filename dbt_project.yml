@@ -28,11 +28,21 @@ models:
 
     # Configuration pour le répertoire circle_parcel
     circle_parcel:
-      materialized: view # Tous les modèles sous models/circle_parcel seront matérialisés en tant que tables
+      staging:
+       +materialized: view # Tous les modèles sous models/circle_parcel seront matérialisés en tant que tables
+      intermediate:
+       +materialized: view
+      mart:
+       +materialized: table
       schema: 'circle_schema'  # Schéma spécifique pour ces modèles (si nécessaire)
     
     # Si vous avez d'autres répertoires avec des configurations spécifiques, vous pouvez les ajouter ici
     greenweez:
-      materialized: view  # Exemple de modèle matérialisé en vue pour un autre répertoire
+      staging:
+       +materialized: view # Tous les modèles sous models/circle_parcel seront matérialisés en tant que tables
+      intermediate:
+       +materialized: view
+      mart:
+       +materialized: table 
       schema: 'greenweez_schema'  # Schéma pour les modèles dans ce répertoire
 
