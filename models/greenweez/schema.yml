@@ -1,0 +1,71 @@
+version: 2
+
+
+sources:
+  - name: raw #endroit où renommer le nom du data set
+    schema: gz_raw_data #où se situe la table dans Big Query
+    description: greenweez raw data sources
+    tables:
+
+
+        - name: sales
+          identifier: raw_gz_sales #quel est le nom exacte de la table dans Big Query
+          description: sales of greenweez / we have one per product_id found in each order_id
+          columns:
+            - name: "(orders_id || '_' || pdt_id)"
+              description: primary key of the table
+              tests:
+                - unique
+                - not_null
+             
+        - name: product
+          identifier: raw_gz_product #quel est le nom exacte de la table dans Big Query
+          description: purchase_price by products_id
+          columns:
+            - name: products_id
+              description: primary key of the table
+              tests:
+                - unique
+                - not_null
+
+        - name: ship
+          identifier: raw_gz_ship #quel est le nom exacte de la table dans Big Query
+          description: shipcost and logcost by orders_id
+          columns:
+              - name: orders_id
+                description: primary key of the table
+                tests:
+                  - unique
+                  - not_null
+models:
+   - name: int_sales_margin
+     description: margin calculation per order
+     columns:
+       - name: orders_id
+         description: primary_key
+         tests:
+           - not_null
+
+   - name : finance_days
+     description: Évolution des transactions, du panier moyen, de la marge journalière et de la marge opérationnelle au quotidien
+     columns:
+       - name: date_date 
+         description: date à laquelle est effectuée une commande
+       - name: nb_de transactions
+         description: Nombre total de transactions
+       - name: revenue
+         description: Chiffre d'affaires total
+       - name: average_basket
+         description: Panier moyen 
+       - name: margin
+         description: margin= revenue-purchase_cost
+       - name: operational_margin
+         description: Operational_margin= margin+ shipping_fee- log_cost-ship_cost
+       - name: total_purchase_cost
+         description: purchase_cost= quantity*purchase_price
+       - name: total_shipping_fee
+         description: frais d'expedition à la charge du client
+       - name: total_log_cost
+         description: total des couts logistiques
+       - name: total_quantity_of_product_sold
+         description: Quantité totale de produits vendus
