@@ -33,8 +33,8 @@ models:
       intermediate:
        +materialized: view
       mart:
-       +materialized: table
-      schema: 'circle_schema'  # Schéma spécifique pour ces modèles (si nécessaire)
+       +materialized: view
+       +schema: 'dbt_morgane_cc'  # Schéma spécifique pour ces modèles (si nécessaire)
     
     # Si vous avez d'autres répertoires avec des configurations spécifiques, vous pouvez les ajouter ici
     greenweez:
@@ -43,6 +43,7 @@ models:
       intermediate:
        +materialized: view
       mart:
-       +materialized: table 
-      schema: 'greenweez_schema'  # Schéma pour les modèles dans ce répertoire
+       +materialized: table
+       finance:
+       +schema: 'finance'
 
