@@ -8,8 +8,13 @@ WITH sub_1 AS(
     USING (products_id)
 
 )
+, sub_2 AS(
 SELECT 
 sub_1.*
 , (sub_1.revenue - sub_1.purchase_cost) AS margin
 FROM sub_1
-
+)
+SELECT
+*
+, {{margin_percent('revenue', 'purchase_cost')}} AS margin_percent
+FROM sub_2

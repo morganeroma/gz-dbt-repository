@@ -37,6 +37,103 @@ sources:
                 tests:
                   - unique
                   - not_null
+
+        - name: adwords
+          identifier: raw_gz_adwords #quel est le nom exacte de la table dans Big Query
+          description: campagne publicitaire adwords par date
+          columns:
+              - name: "(date_date || '_' || campaign_key)"
+                description: primary key of the table
+                tests:
+                  - unique
+                  - not_null
+              - name: date_date
+                description: date
+              - name: paid_source
+                description: plateforme par laquelle la publicité est diffusée
+              - name: campaign_key
+                description: clé de la campagne
+              - name: camPGN_name
+                description: nom de la campagne
+              - name: ads_cost
+                description: cout de la publicité
+              - name: impression
+                description: nombre d'impression (nombre de fois ou la publicité a été vu par les utilisateurs)
+              - name: click
+                description: nombre de click
+
+        - name: bing
+          identifier: raw_gz_bing #quel est le nom exacte de la table dans Big Query
+          description: campagne publicitaire adwords par date
+          columns:
+              - name: "(date_date || '_' || campaign_key)"
+                description: primary key of the table
+                tests:
+                  - unique
+                  - not_null
+              - name: date_date
+                description: date
+              - name: paid_source
+                description: plateforme par laquelle la publicité est diffusée
+              - name: campaign_key
+                description: clé de la campagne
+              - name: camPGN_name
+                description: nom de la campagne
+              - name: ads_cost
+                description: cout de la publicité
+              - name: impression
+                description: nombre d'impression (nombre de fois ou la publicité a été vu par les utilisateurs)
+              - name: click
+                description: nombre de click
+        - name: criteo
+          identifier: raw_gz_criteo #quel est le nom exacte de la table dans Big Query
+          description: campagne publicitaire adwords par date
+          columns:
+              - name: "(date_date || '_' || campaign_key)"
+                description: primary key of the table
+                tests:
+                  - unique
+                  - not_null
+              - name: date_date
+                description: date
+              - name: paid_source
+                description: plateforme par laquelle la publicité est diffusée
+              - name: campaign_key
+                description: clé de la campagne
+              - name: camPGN_name
+                description: nom de la campagne
+              - name: ads_cost
+                description: cout de la publicité
+              - name: impression
+                description: nombre d'impression (nombre de fois ou la publicité a été vu par les utilisateurs)
+              - name: click
+                description: nombre de click
+           
+        - name: facebook
+          identifier: raw_gz_facebook #quel est le nom exacte de la table dans Big Query
+          description: campagne publicitaire adwords par date
+          columns:
+              - name: "(date_date || '_' || campaign_key)"
+                description: primary key of the table
+                tests:
+                  - unique
+                  - not_null
+              - name: date_date
+                description: date
+              - name: paid_source
+                description: plateforme par laquelle la publicité est diffusée
+              - name: campaign_key
+                description: clé de la campagne
+              - name: camPGN_name
+                description: nom de la campagne
+              - name: ads_cost
+                description: cout de la publicité
+              - name: impression
+                description: nombre d'impression (nombre de fois ou la publicité a été vu par les utilisateurs)
+              - name: click
+                description: nombre de click
+
+
 models:
    - name: int_sales_margin
      description: margin calculation per order
@@ -69,3 +166,48 @@ models:
          description: total des couts logistiques
        - name: total_quantity_of_product_sold
          description: Quantité totale de produits vendus
+
+   - name: int_campaigns
+     description: jointure de toutes les campagnes publicitaires
+     columns:
+       - name: "(date_date || '_' || campaign_key)"
+         description: primary key of the table
+         tests:
+          - unique
+          - not_null
+       - name: date_date
+         description: date
+         
+       - name: paid_source
+         description: plateforme par laquelle la publicité est diffusée
+         
+       - name: campaign_key
+         description: clé de la campagne
+         
+       - name: camPGN_name
+         description: nom de la campagne
+         
+       - name: ads_cost
+         description: cout de la publicité
+         
+       - name: impression
+         description: nombre d'impression (nombre de fois ou la publicité a été vu par les utilisateurs)
+        
+       - name: click
+         description: nombre de click
+
+   - name: int_campaigns_days
+     description: sommes des couts, des clicks et impressions des campagnes publicitaires par jour
+     columns:
+       - name: date_date
+         description: date des la publicité
+         tests:
+          - unique
+          - not_null 
+       - name: ads_cost
+         description:  somme des couts publicitaires
+       - name: ads_impression
+         description:  somme des impression
+       - name: ads_cliks
+         description:  somme des clicks
+               
