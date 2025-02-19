@@ -1,0 +1,31 @@
+version: 2
+
+
+sources:
+  - name: raw #endroit où renommer le nom du data set
+    schema: raw_data_circle #où se situe la table dans Big Query
+    description: circle raw data sources
+    tables:
+
+
+        - name: cc_parcel
+          identifier: raw_cc_parcel #quel est le nom exacte de la table dans Big Query
+          description: suivi du transport
+          columns:
+            - name: Parcel_id
+              description: numero de parcel
+              tests:
+                - unique
+                - not_null
+
+
+        - name: cc_product
+          identifier: raw_cc_parcel_product #quel est le nom exacte de la table dans Big Query
+          description: purchase_price by product_id
+          columns:
+            - name: ParCEL_id
+              description: primary key of the table
+              tests:
+                - unique
+                - not_null
+        
