@@ -22,10 +22,7 @@ clean-targets:
 # Configuration des modèles (materialisation, schémas, etc.)
 models:
   my_new_project:
-    # Configurations par défaut pour le répertoire example
-    example:
-      materialized: view  # Tous les modèles sous models/example seront matérialisés en tant que vues
-
+    
     # Configuration pour le répertoire circle_parcel
     circle_parcel:
       staging:
